@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>陈姣姣 — 信贷风控模型工程师</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+    :root {
+      --bg: #0a0a0b;
+      --surface: #111113;
+      --border: rgba(255,255,255,0.06);
+      --text: #e4e4e7;
+      --text-dim: #71717a;
+      --accent: #a78bfa;
+      --accent-glow: rgba(167,139,250,0.15);
+      --green: #34d399;
+      --font-sans: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Grid background ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 64px 64px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Layout ── */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 0 60px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(167,139,250,0.2);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--accent);
+      width: fit-content;
+      margin-bottom: 28px;
+    }
+
+    .badge .dot {
+      width: 6px; height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 4.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    h1 .role {
+      display: block;
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      font-weight: 400;
+      color: var(--text-dim);
+      letter-spacing: 0;
+      margin-top: 12px;
+    }
+
+    .intro {
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      font-weight: 300;
+      color: var(--text-dim);
+      max-width: 560px;
+      margin-bottom: 48px;
+      line-height: 1.8;
+    }
+
+    .intro strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ── About Section ── */
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .about-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 48px;
+    }
+
+    .about-card p {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      line-height: 1.9;
+      margin-bottom: 16px;
+    }
+
+    .about-card p:last-child { margin-bottom: 0; }
+
+    .about-card p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ── Skills ── */
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 48px;
+    }
+
+    .skill-tag {
+      padding: 8px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      transition: all 0.25s ease;
+      cursor: default;
+    }
+
+    .skill-tag:hover {
+      color: var(--accent);
+      border-color: rgba(167,139,250,0.3);
+      background: var(--accent-glow);
+    }
+
+    /* ── Footer / Social ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0 60px;
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-dim);
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.25s ease;
+    }
+
+    .social-link:hover {
+      color: var(--text);
+      border-color: rgba(167,139,250,0.3);
+      background: var(--accent-glow);
+      transform: translateY(-2px);
+    }
+
+    .social-link .icon {
+      width: 20px; height: 20px;
+      opacity: 0.6;
+    }
+
+    .social-link:hover .icon { opacity: 1; }
+
+    .copyright {
+      margin-top: 40px;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      opacity: 0.5;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .hero { padding: 60px 0 40px; }
+      .about-card { padding: 24px; }
+      .social-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="badge">
+        <span class="dot"></span>
+        上海 · 在线
+      </div>
+
+      <h1>
+        陈姣姣
+        <span class="role">资深信贷风控模型工程师</span>
+      </h1>
+
+      <p class="intro">
+        用<strong>数据与算法</strong>丈量风险边界，<br>
+        让每一笔信贷决策都有据可依。
+      </p>
+
+      <div class="section-label">关于我</div>
+      <div class="about-card">
+        <p>
+          专注于<strong>信贷风控领域</strong>的模型开发与迭代，覆盖申请评分（A卡）、行为评分（B卡）、催收评分（C卡）等全生命周期评分卡体系。擅长从业务需求出发，完成特征工程、模型训练、策略联动到线上监控的端到端闭环。
+        </p>
+        <p>
+          日常工作中，我在<strong>Python / SQL</strong> 生态里构建模型，用 XGBoost、LightGBM 等算法挖掘风险信号，并通过 PSI、KS、AUC 等指标持续追踪模型表现。相信好的风控模型不只是技术产物，更是<strong>业务理解与工程能力</strong>的交汇。
+        </p>
+      </div>
+
+      <div class="section-label">技能栈</div>
+      <div class="skills">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">XGBoost</span>
+        <span class="skill-tag">LightGBM</span>
+        <span class="skill-tag">评分卡建模</span>
+        <span class="skill-tag">特征工程</span>
+        <span class="skill-tag">风控策略</span>
+        <span class="skill-tag">模型监控</span>
+        <span class="skill-tag">KS / AUC / PSI</span>
+        <span class="skill-tag">Pandas</span>
+        <span class="skill-tag">Scikit-learn</span>
+        <span class="skill-tag">Hermes Agent</span>
+      </div>
+    </section>
+
+    <footer>
+      <div class="section-label">联系方式</div>
+      <div class="social-grid">
+        <a href="#" class="social-link">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.33 6.44-6.43 0-1.39-.49-2.65-1.33-3.62a5.18 5.18 0 0 0 .17-3.64s-1.34-.43-4.4 1.67a15.33 15.33 0 0 0-8 0C6.34 1.67 5 2.1 5 2.1a5.18 5.18 0 0 0 .17 3.64A5.17 5.17 0 0 0 3.84 9c0 5.1 3.3 6.08 6.44 6.43A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+        <a href="#" class="social-link">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email
+        </a>
+        <a href="#" class="social-link">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          微信
+        </a>
+        <a href="#" class="social-link">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <p class="copyright">© 2026 陈姣姣 · 用热爱与逻辑构建风控</p>
+    </footer>
+  </main>
+</body>
+</html>
